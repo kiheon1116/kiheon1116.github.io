@@ -7,6 +7,8 @@
     <meta name="description" content="동명쇼바 공식 홈페이지 포털입니다. 스마트스토어, 블로그, 유튜브, 매장 위치 정보를 한눈에 확인하세요.">
     <meta name="naver-site-verification" content="1a915861537fa7cfb93060a7c6b825395f0a65cb" />
     
+    <meta name="format-detection" content="telephone=no">
+
     <style>
         /* 초기화 및 기본 스타일 */
         body, html { margin: 0; padding: 0; width: 100%; min-height: 100%; font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background-color: #121212; color: #fff; display: flex; flex-direction: column; align-items: center; }
@@ -34,6 +36,14 @@
             display: inline-block;    
             border-radius: 10px;
             line-height: 1.4;
+        }
+
+        /* 전화/문자 링크 스타일 보강 */
+        .sub-title a {
+            display: inline-block;
+            color: #ffcc00 !important; /* 색상 강제 적용 */
+            cursor: pointer;
+            padding: 5px;
         }
 
         /* 카드 그리드 레이아웃 */
@@ -91,47 +101,22 @@
             text-align: center;
         }
 
+        /* 하단 텍스트는 링크 속성 제거 */
+        .footer-info { pointer-events: none; }
+
         /* [핵심] 모바일 대응 최적화 */
         @media (max-width: 600px) {
-            body, html { overflow-x: hidden; } /* 가로 스크롤 방지 */
-            
-            .portal-container {
-                padding: 5vh 15px; /* 화면 높이에 따른 상하 여백 조절 */
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-            }
-
+            body, html { overflow-x: hidden; }
+            .portal-container { padding: 5vh 15px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
             header { margin-bottom: 3vh; }
             .main-title { font-size: 22px; margin-bottom: 10px; }
             .sub-title { font-size: 16px; padding: 8px 15px; }
-
-            .portal-grid {
-                gap: 12px; /* 카드 간격 축소 */
-                grid-template-columns: repeat(2, 1fr); /* 2열 유지 (4개가 한 화면에 보이도록) */
-            }
-
-            .portal-card {
-                padding: 15px 10px; /* 카드 안쪽 여백 최소화 */
-                border-radius: 15px;
-            }
-
-            .portal-card img {
-                width: 18vw; /* 화면 너비에 맞춘 이미지 크기 */
-                height: 18vw;
-                margin-bottom: 10px;
-                padding: 8px;
-            }
-
-            .portal-card h2 { font-size: 13px; word-break: keep-all; } /* 텍스트 줄바꿈 방지 */
-            .portal-card p { display: none; } /* 모바일에서는 설명을 숨겨 공간 확보 */
-
-            footer {
-                margin-top: 4vh;
-                font-size: 10px;
-                padding-top: 15px;
-            }
+            .portal-grid { gap: 12px; grid-template-columns: repeat(2, 1fr); }
+            .portal-card { padding: 15px 10px; border-radius: 15px; }
+            .portal-card img { width: 18vw; height: 18vw; margin-bottom: 10px; padding: 8px; }
+            .portal-card h2 { font-size: 13px; word-break: keep-all; }
+            .portal-card p { display: none; }
+            footer { margin-top: 4vh; font-size: 10px; padding-top: 15px; }
         }
     </style>
 </head>
@@ -140,11 +125,11 @@
 <div class="portal-container">
     <header>
         <h1 class="main-title">동명쇼바 공식 홈페이지 포털입니다</h1>
-        <p class="sub-title">
+        <div class="sub-title">
             매장 문의 <br>
-            <a href="tel:02-2213-7896" style="display:inline; color: #ffcc00;">(전화) 02-2213-7896</a> <br>
-            <a href="sms:010-3776-7906" style="display:inline; color: #ffcc00;">(문자) 010-3776-7906</a>
-        </p>
+            <a href="tel:0222137896">(전화) 02-2213-7896</a> <br>
+            <a href="sms:01037767906">(문자) 010-3776-7906</a>
+        </div>
     </header>
 
     <div class="portal-grid">
@@ -178,9 +163,12 @@
     </div>
 
     <footer>
-        <strong>(주)동명쇼바 (D.M.S)</strong><br>
-        서울특별시 광진구 동일로 427 <br>TEL: 02-2213-7896<br>
-        Copyright © 2026 D.M.S All Rights Reserved.
+        <div class="footer-info">
+            <strong>(주)동명쇼바 (D.M.S)</strong><br>
+            서울특별시 광진구 동일로 427 <br>
+            TEL: 02-2213-7896<br>
+            Copyright © 2026 D.M.S All Rights Reserved.
+        </div>
     </footer>
 </div>
 
