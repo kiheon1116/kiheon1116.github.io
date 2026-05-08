@@ -16,27 +16,31 @@
         /* 포털 메인 컨테이너 */
         .portal-container {
             width: 95%;
-            max-width: 1200px; /* 이미지가 커졌으므로 전체 폭 확대 */
+            max-width: 1200px;
             text-align: center;
             padding: 60px 20px;
+            box-sizing: border-box;
         }
 
         /* 헤더 섹션 */
-        header { margin-bottom: 80px; }
+        header { margin-bottom: 60px; }
         .main-title { font-size: 48px; font-weight: 800; letter-spacing: -1px; margin-bottom: 20px; color: #f5f5f5; }
-        .sub-title { font-size: 30px; 
-                    color: #ffcc00;
-                    font-weight: 600; 
-                    background: #222; 
-                    padding: 10px 20px; 
-                    display: inline-block;    
-                    border-radius: 10px;}
+        .sub-title { 
+            font-size: 30px; 
+            color: #ffcc00;
+            font-weight: 600; 
+            background: #222; 
+            padding: 10px 20px; 
+            display: inline-block;    
+            border-radius: 10px;
+            line-height: 1.4;
+        }
 
         /* 카드 그리드 레이아웃 */
         .portal-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 40px; /* 카드 간격 확대 */
+            gap: 40px;
         }
 
         /* 개별 링크 카드 스타일 */
@@ -44,7 +48,7 @@
             background: #1e1e1e;
             border: 1px solid #333;
             border-radius: 30px;
-            padding: 60px 30px;
+            padding: 50px 20px;
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             cursor: pointer;
             display: flex;
@@ -60,55 +64,74 @@
             background: #252525;
         }
 
-        /* 아이콘 이미지 설정 - 기존 90px에서 약 4배인 360px로 확대 */
         .portal-card img {
             width: 160px;
             height: 160px;
-            max-width: 100%; /* 화면보다 커지는 것 방지 */
+            max-width: 100%;
             object-fit: contain;
-            margin-bottom: 35px;
-            /* 이미지가 없을 때를 대비한 기본 스타일 */
+            margin-bottom: 25px;
             background-color: #2a2a2a;
             border-radius: 50%;
             padding: 15px;
             transition: transform 0.4s ease;
         }
 
-        .portal-card:hover img {
-            transform: scale(1.05); /* 마우스 올렸을 때 이미지 살짝 확대 */
-        }
+        .portal-card h2 { font-size: 24px; margin: 0; font-weight: 700; color: #fff; }
+        .portal-card p { font-size: 16px; color: #aaa; margin-top: 10px; }
 
-        .portal-card h2 {
-            font-size: 28px; /* 제목 크기 확대 */
-            margin: 0;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .portal-card p {
-            font-size: 18px; /* 설명 크기 확대 */
-            color: #aaa;
-            margin-top: 15px;
-        }
-
-        /* 하단 정보 섹션 */
         footer {
-            margin-top: 100px;
+            margin-top: 80px;
             font-size: 15px;
             color: #666;
             line-height: 1.8;
             border-top: 1px solid #222;
             padding-top: 40px;
+            padding-bottom: 40px;
             width: 100%;
             text-align: center;
-            padding-bottom: 60px;
         }
 
-        /* 모바일 대응 */
-        @media (max-width: 900px) {
-            .portal-grid { grid-template-columns: 1fr; } /* 태블릿/모바일 1줄 */
-            .portal-card img { width: 280px; height: 280px; } /* 모바일에서는 소폭 축소 */
-            .main-title { font-size: 28px; }
+        /* [핵심] 모바일 대응 최적화 */
+        @media (max-width: 600px) {
+            body, html { overflow-x: hidden; } /* 가로 스크롤 방지 */
+            
+            .portal-container {
+                padding: 5vh 15px; /* 화면 높이에 따른 상하 여백 조절 */
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            header { margin-bottom: 3vh; }
+            .main-title { font-size: 22px; margin-bottom: 10px; }
+            .sub-title { font-size: 16px; padding: 8px 15px; }
+
+            .portal-grid {
+                gap: 12px; /* 카드 간격 축소 */
+                grid-template-columns: repeat(2, 1fr); /* 2열 유지 (4개가 한 화면에 보이도록) */
+            }
+
+            .portal-card {
+                padding: 15px 10px; /* 카드 안쪽 여백 최소화 */
+                border-radius: 15px;
+            }
+
+            .portal-card img {
+                width: 18vw; /* 화면 너비에 맞춘 이미지 크기 */
+                height: 18vw;
+                margin-bottom: 10px;
+                padding: 8px;
+            }
+
+            .portal-card h2 { font-size: 13px; word-break: keep-all; } /* 텍스트 줄바꿈 방지 */
+            .portal-card p { display: none; } /* 모바일에서는 설명을 숨겨 공간 확보 */
+
+            footer {
+                margin-top: 4vh;
+                font-size: 10px;
+                padding-top: 15px;
+            }
         }
     </style>
 </head>
@@ -118,9 +141,9 @@
     <header>
         <h1 class="main-title">동명쇼바 공식 홈페이지 포털입니다</h1>
         <p class="sub-title">
-        매장 문의 <br>
-        <a href="tel:02-2213-7896" style="display:inline;   color: #ffcc00;">(전화) 02-2213-7896</a> <br>
-        <a href="sms:010-3776-7906" style="display:inline; color: #ffcc00;">(문자) 010-3776-7906</a>
+            매장 문의 <br>
+            <a href="tel:02-2213-7896" style="display:inline; color: #ffcc00;">(전화) 02-2213-7896</a> <br>
+            <a href="sms:010-3776-7906" style="display:inline; color: #ffcc00;">(문자) 010-3776-7906</a>
         </p>
     </header>
 
@@ -128,8 +151,7 @@
         <a href="https://map.naver.com/p/entry/place/13451467?placePath=%252Fhome%253Fentry%253Dplt&searchType=place&lng=127.0785701&lat=37.5685013" target="_blank">
             <div class="portal-card">
                 <img src="place_logo.jpg" alt="오시는 길">
-                <h2>오시는 길 / 네이버 예약</h2>
-                <p>본사 매장 및 장착점 위치 안내</p>
+                <h2>오시는 길</h2>
             </div>
         </a>
 
@@ -137,15 +159,13 @@
             <div class="portal-card">
                 <img src="logo_dmparts.jpg" alt="쇼핑몰 바로가기">
                 <h2>온라인 쇼핑몰</h2>
-                <p>빌스테인, 삭스, 램포더 등 제품 구매</p>
             </div>
         </a>
 
         <a href="https://blog.naver.com/bilsteinkorea" target="_blank">
             <div class="portal-card">
                 <img src="blog_logo.jpg" alt="블로그 바로가기">
-                <h2>동명쇼바 공식 블로그</h2>
-                <p>빌스테인(BILSTEIN) 코리아 동명쇼바 블로그</p>
+                <h2>공식 블로그</h2>
             </div>
         </a>
 
@@ -153,14 +173,13 @@
             <div class="portal-card">
                 <img src="youtube_logo.jpg" alt="유튜브 바로가기">
                 <h2>유튜브 채널</h2>
-                <p>동명쇼바 공식 유튜브 채널 (작업 영상)</p>
             </div>
         </a>
     </div>
 
     <footer>
         <strong>(주)동명쇼바 (D.M.S)</strong><br>
-        본사: 서울특별시 광진구 동일로 427 | TEL: 02-2213-7896<br>
+        서울특별시 광진구 동일로 427 | TEL: 02-2213-7896<br>
         Copyright © 2026 D.M.S All Rights Reserved.
     </footer>
 </div>
