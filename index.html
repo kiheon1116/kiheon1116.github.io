@@ -9,37 +9,37 @@
     
     <style>
         /* 초기화 및 기본 스타일 */
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background-color: #121212; color: #fff; display: flex; align-items: center; justify-content: center; }
+        body, html { margin: 0; padding: 0; width: 100%; min-height: 100%; font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background-color: #121212; color: #fff; display: flex; flex-direction: column; align-items: center; }
         ul { list-style: none; padding: 0; margin: 0; }
         a { text-decoration: none; color: inherit; display: block; }
 
         /* 포털 메인 컨테이너 */
         .portal-container {
-            width: 90%;
-            max-width: 900px;
+            width: 95%;
+            max-width: 1200px; /* 이미지가 커졌으므로 전체 폭 확대 */
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
         }
 
         /* 헤더 섹션 */
-        header { margin-bottom: 60px; }
-        .main-title { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 10px; color: #f5f5f5; }
-        .sub-title { font-size: 16px; color: #888; font-weight: 300; }
+        header { margin-bottom: 80px; }
+        .main-title { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 15px; color: #f5f5f5; }
+        .sub-title { font-size: 18px; color: #888; font-weight: 300; }
 
         /* 카드 그리드 레이아웃 */
         .portal-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
+            gap: 40px; /* 카드 간격 확대 */
         }
 
         /* 개별 링크 카드 스타일 */
         .portal-card {
             background: #1e1e1e;
             border: 1px solid #333;
-            border-radius: 20px;
-            padding: 50px 20px;
-            transition: all 0.3s ease;
+            border-radius: 30px;
+            padding: 60px 30px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -48,52 +48,61 @@
         }
 
         .portal-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
             border-color: #0078d7;
-            box-shadow: 0 10px 30px rgba(0, 120, 215, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 120, 215, 0.25);
             background: #252525;
         }
 
-        /* 아이콘 이미지 설정 */
+        /* 아이콘 이미지 설정 - 기존 90px에서 약 4배인 360px로 확대 */
         .portal-card img {
-            width: 90px;
-            height: 90px;
+            width: 360px;
+            height: 360px;
+            max-width: 100%; /* 화면보다 커지는 것 방지 */
             object-fit: contain;
-            margin-bottom: 20px;
+            margin-bottom: 35px;
             /* 이미지가 없을 때를 대비한 기본 스타일 */
             background-color: #2a2a2a;
             border-radius: 50%;
-            padding: 10px;
+            padding: 15px;
+            transition: transform 0.4s ease;
+        }
+
+        .portal-card:hover img {
+            transform: scale(1.05); /* 마우스 올렸을 때 이미지 살짝 확대 */
         }
 
         .portal-card h2 {
-            font-size: 20px;
+            font-size: 28px; /* 제목 크기 확대 */
             margin: 0;
-            font-weight: 600;
+            font-weight: 700;
             color: #fff;
         }
 
         .portal-card p {
-            font-size: 14px;
-            color: #666;
-            margin-top: 10px;
+            font-size: 18px; /* 설명 크기 확대 */
+            color: #aaa;
+            margin-top: 15px;
         }
 
         /* 하단 정보 섹션 */
         footer {
-            margin-top: 70px;
-            font-size: 13px;
-            color: #555;
+            margin-top: 100px;
+            font-size: 15px;
+            color: #666;
             line-height: 1.8;
             border-top: 1px solid #222;
-            padding-top: 30px;
+            padding-top: 40px;
+            width: 100%;
+            text-align: center;
+            padding-bottom: 60px;
         }
 
-        /* 모바일 대응 (화면이 작아질 때 1줄로 변경) */
-        @media (max-width: 600px) {
-            .portal-grid { grid-template-columns: 1fr; }
-            .main-title { font-size: 24px; }
-            .portal-card { padding: 40px 20px; }
+        /* 모바일 대응 */
+        @media (max-width: 900px) {
+            .portal-grid { grid-template-columns: 1fr; } /* 태블릿/모바일 1줄 */
+            .portal-card img { width: 280px; height: 280px; } /* 모바일에서는 소폭 축소 */
+            .main-title { font-size: 28px; }
         }
     </style>
 </head>
@@ -134,7 +143,7 @@
             <div class="portal-card">
                 <img src="youtube_logo.jpg" alt="유튜브 바로가기">
                 <h2>유튜브 채널</h2>
-                <span>장착 영상 및 제품 리뷰 확인</span>
+                <p>실시간 장착 영상 및 제품 리뷰 확인</p>
             </div>
         </a>
     </div>
